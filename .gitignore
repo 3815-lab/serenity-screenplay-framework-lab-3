@@ -1,0 +1,11 @@
+# System
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# K6 Reports & Output
+summary.html
+*.json
+!grafana/**/*.json
+*.xml

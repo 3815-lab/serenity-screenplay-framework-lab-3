@@ -1,0 +1,37 @@
+HALLAZGOS Y CONCLUSIONES DE LA PRUEBA DE CARGA
+==============================================
+
+Resumen de Ejecución
+--------------------
+- Fecha: 24/01/2026
+- Escenario: Login Concurrent (Rate constante)
+- Duración: 1 minuto
+- Tasa de Arribo (TPS): 22 TPS
+- Usuarios Virtuales (VUs): 50 asignados
+
+Cumplimiento de SLAs
+--------------------
+1. Tiempo de Respuesta (Latencia): CUMPLIDO
+   - Requerido: < 1.5 segundos (1500ms)
+   - Obtenido (p95): 355 ms
+   - Obtenido (Promedio): 336 ms
+   
+2. Tasa de Error: CUMPLIDO
+   - Requerido: < 3%
+   - Obtenido: 0.00%
+   - Checks Fallidos: 0
+
+3. Throughput (TPS): CUMPLIDO
+   - Objetivo: 22 TPS
+   - Obtenido: 21.99 TPS
+
+Observaciones Técnicas
+----------------------
+- El tráfico se mantuvo estable en el rango esperado de 21-23 TPS sin caídas significativas.
+- Latencia Estable: El 95% de las peticiones se completaron en menos de 355 ms, muy por debajo del límite de 1.5s.
+- Estabilidad: Se procesaron más de 12,000 peticiones con 0% de errores. Todas las respuestas exitosas incluyeron el token.
+
+Recomendaciones
+---------------
+- Escalar la prueba a 50 TPS para encontrar el punto de saturación real, dado que el sistema respondió holgadamente a la carga actual.
+- Mantener el monitoreo continuo de este escenario crítico.

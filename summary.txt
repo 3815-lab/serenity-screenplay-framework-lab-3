@@ -1,0 +1,23 @@
+     ✗ status is 200
+      ↳  0% — ✓ 0 / ✗ 111
+     ✓ has token
+
+     business_login_duration........: avg=359.280459 min=326.279883 med=340.450198 max=611.789102 p(90)=383.226659 p(95)=567.351339
+     business_token_received_rate...: 0.00%  ✓ 0        ✗ 111 
+     checks.........................: 50.00% ✓ 111      ✗ 111 
+     data_received..................: 230 kB 43 kB/s
+     data_sent......................: 39 kB  7.3 kB/s
+     http_req_blocked...............: avg=72.19ms    min=191ns      med=1.43µs     max=172.79ms   p(90)=161.97ms   p(95)=162.8ms   
+     http_req_connecting............: avg=34.73ms    min=0s         med=0s         max=78.21ms    p(90)=77.59ms    p(95)=77.96ms   
+   ✓ http_req_duration..............: avg=359.28ms   min=326.27ms   med=340.45ms   max=611.78ms   p(90)=383.22ms   p(95)=567.35ms  
+       { expected_response:true }...: avg=359.28ms   min=326.27ms   med=340.45ms   max=611.78ms   p(90)=383.22ms   p(95)=567.35ms  
+   ✓ http_req_failed................: 0.00%  ✓ 0        ✗ 111 
+     http_req_receiving.............: avg=124.57µs   min=32.67µs    med=110.79µs   max=527.15µs   p(90)=228.43µs   p(95)=318.23µs  
+     http_req_sending...............: avg=149.19µs   min=56.23µs    med=148.73µs   max=328.57µs   p(90)=225.01µs   p(95)=240.51µs  
+     http_req_tls_handshaking.......: avg=37.28ms    min=0s         med=0s         max=88.1ms     p(90)=84.65ms    p(95)=85.16ms   
+     http_req_waiting...............: avg=359ms      min=326ms      med=340.13ms   max=611.43ms   p(90)=383.04ms   p(95)=567.08ms  
+     http_reqs......................: 111    20.80345/s
+     iteration_duration.............: avg=432.16ms   min=328.2ms    med=355.87ms   max=769.51ms   p(90)=530.23ms   p(95)=725.39ms  
+     iterations.....................: 111    20.80345/s
+     vus............................: 7      min=7      max=11
+     vus_max........................: 50     min=50     max=50
