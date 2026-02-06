@@ -3,6 +3,7 @@ import { THRESHOLDS, TEST_CONFIG } from '../src/config/config.js';
 import { SharedArray } from 'k6/data';
 import papaparse from '../src/lib/papaparse.js';
 import { textSummary } from '../src/lib/k6-summary.js';
+import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/2.4.0/dist/bundle.js';
 
 // Load and filter data once
 const csvData = new SharedArray('users', function () {
@@ -40,7 +41,8 @@ export default function () {
 
 export function handleSummary(data) {
     return {
+        'index.html': htmlReport(data),
         'stdout': textSummary(data, { indent: ' ', enableColors: true }), // Show in console
-        'summary.txt': textSummary(data, { indent: ' ', enableColors: false }), // Save to file (clean like the image)
+        'summary.txt': textSummary(data, { indent: ' ', enableColors: false }), // Save to file
     };
 }
