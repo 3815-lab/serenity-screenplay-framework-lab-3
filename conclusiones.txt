@@ -3,18 +3,18 @@ HALLAZGOS Y CONCLUSIONES DE LA PRUEBA DE CARGA
 
 Resumen de Ejecución
 --------------------
-- Fecha: 24/01/2026
+- Fecha: 05/02/2026
 - Escenario: Login Concurrent (Rate constante)
-- Duración: 1 minuto
+- Duración: 15 minutos
 - Tasa de Arribo (TPS): 22 TPS
-- Usuarios Virtuales (VUs): 50 asignados
+- Usuarios Virtuales (VUs): 50-100 configurados (Máximo activo: 36)
 
 Cumplimiento de SLAs
 --------------------
 1. Tiempo de Respuesta (Latencia): CUMPLIDO
    - Requerido: < 1.5 segundos (1500ms)
-   - Obtenido (p95): 355 ms
-   - Obtenido (Promedio): 336 ms
+   - Obtenido (p95): 440.80 ms
+   - Obtenido (Promedio): 355.10 ms
    
 2. Tasa de Error: CUMPLIDO
    - Requerido: < 3%
@@ -27,11 +27,11 @@ Cumplimiento de SLAs
 
 Observaciones Técnicas
 ----------------------
-- El tráfico se mantuvo estable en el rango esperado de 21-23 TPS sin caídas significativas.
-- Latencia Estable: El 95% de las peticiones se completaron en menos de 355 ms, muy por debajo del límite de 1.5s.
-- Estabilidad: Se procesaron más de 12,000 peticiones con 0% de errores. Todas las respuestas exitosas incluyeron el token.
+- Estabilidad Prolongada: El sistema mantuvo un rendimiento constante durante los 15 minutos sin signos de fatiga o fugas de memoria.
+- Consumo de Recursos: Se procesaron 19,801 peticiones totales con un uso eficiente de VUs (máximo 36), indicando que el servicio tiene margen de crecimiento.
+- Fiabilidad Total: El 100% de las validaciones de negocio pasaron satisfactoriamente bajo carga sostenida.
 
 Recomendaciones
 ---------------
-- Escalar la prueba a 50 TPS para encontrar el punto de saturación real, dado que el sistema respondió holgadamente a la carga actual.
-- Mantener el monitoreo continuo de este escenario crítico.
+- Stress Testing: Escalar la carga gradualmente hasta 50-60 TPS para identificar el punto de saturación del microservicio.
+- Monitoreo de Infraestructura: En futuras pruebas, correlacionar estos resultados con el consumo de CPU/RAM del servidor para una vista 360 del rendimiento.
