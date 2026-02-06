@@ -19,50 +19,32 @@ INSTRUCCIONES DE EJECUCION (PASO A PASO)
 1. Ubicación:
    Asegúrese de estar en la carpeta raíz del proyecto (donde se encuentran `tests/` y `src/`).
 
-2. Ejecutar la prueba:
-   Corra el siguiente comando en su terminal:
+2. Ejecución de la prueba:
+   El proyecto está configurado para ejecutarse con valores balanceados por defecto. 
    
+   Ejecución Estándar:
    k6 run tests/load-test.js
+   Por defecto: 22 TPS, 100 Max VUs, 1 min de duración.
 
-   **Parametrización (Opcional):**
-   Puede modificar el comportamiento sin tocar el código usando variables de entorno (-e):
+   Para validar la estabilidad del sistema bajo carga prolongada:
+   k6 run -e DURATION=15m tests/load-test.js
 
+   Parametrización Avanzada:
+   Puede sobrescribir cualquier variable de entorno sin modificar el código:
    - `TARGET_TPS`: Rata de peticiones por segundo (Defecto: 22).
-   - `MAX_VUS`: Máximo de usuarios concurrentes (Defecto: 100).
-   - `DURATION`: Tiempo de la prueba (Defecto: 1m).
-   - `REQ_DURATION_THRESHOLD`: Límite de latencia p95 en ms (Defecto: 1500).
+   - `MAX_VUS`: Límite de usuarios simultáneos (Defecto: 100).
+   - `DURATION`: Tiempo total de la prueba (e.g., 5m, 1h).
+   - `REQ_DURATION_THRESHOLD`: SLA de latencia p95 en ms (Defecto: 1500).
 
-   Ejemplo para "jugar" con valores extremos:
-   `k6 run -e TARGET_TPS=50 -e MAX_VUS=200 -e DURATION=5m tests/load-test.js`
+   *Ejemplo personalizado:*
+   `k6 run -e TARGET_TPS=30 -e DURATION=10m tests/load-test.js`
 
 3. Ver los reportes:
    Al finalizar la ejecución (1 minuto), se generará automáticamente:
    - Salida en Consola: Resumen detallado de la ejecución.
    - Archivo `summary.txt`: Un reporte persistente con todas las métricas.
-   - Archivo `report.html`: Dashboard gráfico local.
+   - Archivo `index.html`: Dashboard gráfico local visual.
 
-EJECUCION AVANZADA CON GRAFANA (OPCIONAL)
------------------------------------------
-Para visualización en tiempo real (Time Series):
-
-1. Levantar Infraestructura:
-   docker-compose up -d
-
-2. Ejecutar prueba enviando métricas a InfluxDB:
-   k6 run --out influxdb=http://localhost:8086/k6 tests/load-test.js
-
-3. Visualizar:
-   Entra a http://localhost:3000 desde tu navegador.
-   Ve a la sección "Dashboards" y selecciona "K6 Load Testing Results".
-   Todo está pre-configurado, así que verás los gráficos moverse apenas abras el tablero.
-
-   Puede combinar Grafana con parámetros personalizados:
-      k6 run --out influxdb=http://localhost:8086/k6 \
-      -e TARGET_TPS=22 \
-      -e MAX_VUS=400 \
-      -e REQ_DURATION_THRESHOLD=1500 \
-      -e DURATION=50m \
-      tests/load-test.js
 
 Nota: El reporte incluye métricas personalizadas de negocio prefijadas con `business_`.
 
